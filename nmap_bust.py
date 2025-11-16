@@ -30,7 +30,10 @@ def run_nmap(targetIp):
             print(f"Protocol: {proto}")
             ports = nm[host][proto].keys()
             for port in sorted(ports):
-                print(f"Port: {port}\tState: {nm[host][proto][port]['state']}\tService: {nm[host][proto][port]['name']}")
+                state = nm[host][proto][port]['state']
+                service = nm[host][proto][port]['name']
+                print(f"Port: {port}\tState: {state}\tService: {service}")
+
 
 
 if __name__ == "__main__":
