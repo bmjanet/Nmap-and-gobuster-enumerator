@@ -46,7 +46,7 @@ def run_nmap(targetIp):
 
                     print(f"Port: {port}\tState: {state}\tService: {service}\t"
                         f"Product: {product}\tVersion: {version}\tExtra: {extrainfo}")
-
+        print(f"[+] HTTP/HTTPS Ports Found: {httpPorts}")
         return httpPorts
     except KeyboardInterrupt:
         print("\n[!] Scan interrupted by user. Exiting cleanly...")
