@@ -24,7 +24,7 @@ def run_nmap(targetIp):
     try:
         nm = nmap.PortScanner()
         print(f"[+] Starting Nmap Scan on {targetIp}")
-        nm.scan(hosts=targetIp, arguments='-A -T4')
+        nm.scan(hosts=targetIp, arguments='-A -T4 -p-')
 
         httpPorts = []
 
@@ -73,3 +73,4 @@ if __name__ == "__main__":
     print("\n" + "-"*40 + "\n")
 
     run_gobuster(targetUrl, httpPorts, wordlistPath)
+
