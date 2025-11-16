@@ -8,7 +8,7 @@ def run_gobuster(targetUrl, wordlistPath):
     print(f"[+] Starting GoBuster on {targetUrl} with wordlist {wordlistPath}")
     try:
         command = ['gobuster', 'dir', '-u', targetUrl, '-w', wordlistPath, '-t', '50']
-        result = subprocess.run(command, capture_output=True, text=True, check=True, shell=False, timeout=300)
+        result = subprocess.run(command, capture_output=True, text=True, check=True, shell=False)
         print("[+] GoBuster Scan Results:")
         print(result.stdout)
     except subprocess.CalledProcessError as e:
