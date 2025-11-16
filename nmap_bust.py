@@ -40,6 +40,8 @@ if __name__ == "__main__":
         print("Usage: python3 script.py <target_ip>")
         sys.exit(1)
 
+    print(f'-'*10 + f"[+] Target IP: {targetIp}" + f'-'*10)
+
     targetIp = sys.argv[1]
     targetUrl = "http://" + targetIp
     wordlistPath = "/usr/share/wordlists/dirb/big.txt"
