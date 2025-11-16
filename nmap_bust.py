@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import nmap
 import subprocess
 import sys
@@ -45,4 +47,5 @@ if __name__ == "__main__":
     # ----------------------
     run_nmap(targetIp)
     print("\n" + "-"*40 + "\n")
+
     run_gobuster(targetUrl, wordlistPath)
