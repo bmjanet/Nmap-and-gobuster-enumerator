@@ -20,6 +20,7 @@ def run_gobuster(targetUrl, wordlistPath):
 
 def run_nmap(targetIp):
     nm = nmap.PortScanner()
+    print(f"[+] Starting Nmap Scan on {targetIp}")
     nm.scan(hosts=targetIp, arguments='-A -T4 -p-')
 
     print(f"[+] Nmap Scan Results for {targetIp}:")
