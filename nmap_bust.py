@@ -22,21 +22,24 @@ def run_nmap(targetIp):
     try:
         nm = nmap.PortScanner()
         print(f"[+] Starting Nmap Scan on {targetIp}")
-        nm.scan(hosts=targetIp, arguments='-A -T4 -p-')
+        nm.scan(hosts=targetIp, arguments='-A -T4')
 
-        # Print the raw nmap output
-        print(nm.get_nmap_last_output())
+        print(f"[+] Nmap Scan Results for {targetIp}:")
+        for host in nm.all_hosts():
+            print(f"Host: {host} ({nm[host].hostname()})")
+            for proto in nm[host].all_protocols():
+                print(f"Protocol: {proto}")
+                ports = nm[host][proto].keys()
+                for port in sorted(ports):
+                    data = nm[host][proto][port]
+                    state = data['state']
+                    service = data.get('name', '')
+                    version = data.get('version', '')
+                    product = data.get('product', '')
+                    extrainfo = data.get('extrainfo', '')
 
-        # print(f"[+] Nmap Scan Results for {targetIp}:")
-        # for host in nm.all_hosts():
-        #     print(f"Host: {host} ({nm[host].hostname()})")
-        #     for proto in nm[host].all_protocols():
-        #         print(f"Protocol: {proto}")
-        #         ports = nm[host][proto].keys()
-        #         for port in sorted(ports):
-        #             state = nm[host][proto][port]['state']
-        #             service = nm[host][proto][port]['name']
-        #             print(f"Port: {port}\tState: {state}\tService: {service}")
+                    print(f"Port: {port}\tState: {state}\tService: {service}\t"
+                        f"Product: {product}\tVersion: {version}\tExtra: {extrainfo}")
     except KeyboardInterrupt:
         print("\n[!] Scan interrupted by user. Exiting cleanly...")
         sys.exit(1)
